@@ -11,12 +11,15 @@ const searchTextEl  = formEl.querySelector('#search--text')
 
 //전역 변수 
 let currentPage = 1
-
+let restMovieNum = 0
 
 // event listener
-formEl.addEventListener('keydown', (e) => {
+formEl.addEventListener('keydown', e => {
+  
   console.log('e',e)
   if (e.key === 'Enter') {
+    //enter를 누르면 click도 되는 건가...? 쨋든 2개 출력이되는 문제를 예방
+    e.preventDefault()
     renderFirstpage()
   }
 } )
@@ -34,35 +37,38 @@ moreBtnEl.addEventListener('click',async () => {
   currentPage += 1
 })
 
-//이벤트가 발생했을 때 화면에 출력하는 함수
 
-
-function randerTotalMoviesNum(totalMoviesnum) {
+// ##이벤트가 발생했을 때 화면에 출력하는 함수
+function randerTotalMoviesNum(totalMoviesNum) { //영화 총 갯수를 출력하는 함수
   const totalMovienumEl = document.querySelector('.movie--total-movie-num')
   totalMovienumEl.innerHTML = ''
   const totalMovies = document.createElement('div')
-  totalMovies.textContent = `전체 검색 결과 : ${totalMoviesnum}`
+  totalMovies.textContent = `전체 검색 결과 : ${totalMoviesNum}`
   totalMovienumEl.append(totalMovies)
+  
 }
 
-async function renderFirstpage() {
+async function renderFirstpage() { //검색하면 제일 첫 페이지를 출력하는 함수 
   currentPage = 1
+  movieListEl.innerHTML =''
   const fetchedData = await fetchDataByTitle(searchTextEl.value,currentPage)
   const {Search: movies, totalResults :totalNumMovie} = fetchedData.data
    // page가 1일때만 총 영화 개수 출력하기
   currentPage === 1 && randerTotalMoviesNum(totalNumMovie)
+  restMovieNum = totalNumMovie
   currentPage = 2
   renderMovies(movies,movieListEl)
-
+ 
 }
 
-function renderMovies(movies, containerEl) {
+function renderMovies(movies, containerEl) { //요소를 생성하고 자식 요소로 넣어주는 함수
   movies.forEach(movie => {
     const movieEl = document.createElement('div') 
     movieEl.textContent = movie.Title
     containerEl.append(movieEl)
     const imgEl = document.createElement('img')
     imgEl.src = movie.Poster ==='N/A' ? './images/noImg.png' : movie.Poster
+    console.log(imgEl.src)
     containerEl.append(imgEl)
 
   })
