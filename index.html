@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>다음:영화검색</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+  <!-- staic폴더에서 css 파일을 관리할때 -->
+  <!-- <link rel="stylesheet" href="./css/main.css"> -->
+
+  <!-- axios -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <!-- material-icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+</head>
+<body>
+  <!-- <img src="./images/logo.png" alt="hhh" /> -->
+  <header>
+    <div class="inner">
+      <div class="logo">
+        <img src="./images/logo_daum.png" alt="다음로고">
+        <p>영화</p>
+      </div>
+      <ul>
+        <li>
+          <a href="javascript:void(0)">뉴스</a>
+        </li>
+        <li>
+          <a href="javascript:void(0)">연예</a>
+        </li>
+        <li>
+          <a href="javascript:void(0)">스포츠</a>
+        </li>
+        <li>
+          <a href="javascript:void(0)">자동차</a>
+        </li>
+      </ul>
+      <div class="inner--left">
+        <button>로그인</button>
+        <div class="menu-btn"  >
+          <a class="material-symbols-rounded" href="javascript:void(0)">widgets</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="inner">
+      <div class="search">
+        <form action="javascript:void(0)">
+          <!-- 영어대소문자, 숫자, 공백만 입력하도록 유도하기 -->
+          <!-- https://neomania.tistory.com/3 -->
+          <input type="text" placeholder="Search Movie title(Only alphabets, numbers)" id="search--text" pattern="[A-Za-z0-9\s+]*$"/> 
+          <!-- <button class="material-icons search-icon" type="submit" value="search"> </button> -->
+          <button type="submit" value = "button">search</button>
+        </form>
+      </div>
+      <div class="movie">
+        <div class="movie--total-movie-num"></div>
+        <div class="movie--list"></div>
+        <button class="movie--more-btn">more</button>
+        <!-- <div class="movie--info">
+          <h3>Movie Title</h3>
+          <span class="green">9.8</span>
+          <img class="imgposter" src="" alt="" width="200">
+        </div>
+        <div class="overview">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ut consequatur dolor asperiores sed nesciunt culpa numquam, ducimus, quam quae assumenda ullam earum! Itaque sed dignissimos nobis maiores, laudantium tenetur atque accusamus voluptatibus autem ullam rerum doloremque vitae, reprehenderit quod odit voluptatum magni ipsum recusandae odio, nulla repellat consequuntur amet officiis.
+        </div> -->
+      </div>
+      <!-- <div class="anothor-movies">
+        <button>more</button>
+      </div> -->
+
+    </div>
+  </main>
+
+  <h1></h1>
+  
+
+</body>

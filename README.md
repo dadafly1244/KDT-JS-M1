@@ -6,6 +6,23 @@
 - 내용:
   - 주어진 API를 활용해 영화 검색 프로젝트를 만들어보세요.
 
+## 구현
+
+### 검색창 Enter
+
+form테그에 이벤트를 걸어서 click이벤트와 keydown이벤트를 한번에 받아오고 싶었지만 실패했다. 
+참고 블로그 : https://velog.io/@hidaehyunlee/ES2020-click-enter-%EB%91%90-%EA%B0%9C%EC%9D%98-%EC%9D%B4%EB%B2%A4%ED%8A%B8-%EB%8F%99%EC%8B%9C%EC%97%90-%EB%93%B1%EB%A1%9D%ED%95%98%EA%B8%B0
+
+https://www.w3schools.com/howto/howto_js_trigger_button_enter.asp
+
+https://okky.kr/article/679723
+이 글을 참고해서 form안에 input태그에서 엔터를 누르면 submit이 되는 현상을 이용하고 싶었으나 실패..ㅠ
+
+대신 두개의 addEventListener를 쓰고 겹치는 부분은 renderFirstpage함수로  빼주었다. 
+
+
+
+
 ## 요구사항
 
 ### 필수 요구사항

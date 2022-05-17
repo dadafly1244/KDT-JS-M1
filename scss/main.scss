@@ -1,0 +1,173 @@
+$color--white: #fff;
+$color--black: #222;
+$color--gray :#919191;
+
+//cors 에러남
+// https://evan-moon.github.io/2020/05/21/about-cors/
+
+// @font-face {
+//   font-family: 'Material Icons';
+//   font-style: normal;
+//   font-weight: 400;
+//   src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
+//   src: local('Material Icons'),
+//     local('MaterialIcons-Regular'),
+//     url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
+//     url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
+//     url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+// }
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+
+
+// common
+
+body {
+  font-family: '-apple-system','Segoe UI', 'Helvetica Neue', Helvetica, Verdana, Arial, sans-serif;;
+}
+
+img {
+  display: block;
+}
+
+a {
+  text-decoration: none;
+}
+
+.inner {
+  width: 1130px;
+  margin: auto;
+  position: relative;
+}
+
+//header
+
+header {
+  margin: auto;
+  height: 60px;
+  background-color: $color--white;
+  border: 1px solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .inner {
+    border: 1px solid red;
+    display:flex;
+    align-items: center;
+    .logo {
+      background-color: aquamarine;
+      display: flex;
+      img {
+        width: 44px;
+        height: 18px;
+        margin-right: 24px;
+        margin-left: 10px;
+      }
+      p {
+        width: 32px;
+        height: 17px;
+        font-size: 16px;
+        font-weight: 700;
+        color:$color--black;
+      }
+    }
+    ul {
+      display:flex;
+      li{
+        margin-left: 15px;
+        a {
+          color: $color--gray;
+          font-weight: 500;
+        }
+      }
+    }
+    &--left{
+      position: absolute;
+      right: 10px;
+      display: flex;
+      button {
+        margin-right: 20px;
+        color: $color--black;
+        background-color: $color--white;
+        border-radius: 4px;
+        border: 1px solid $color--gray;
+      }
+      .menu-btn {
+        a{
+          color: $color--gray;
+        }
+      }
+    }
+  }
+}
+
+//main
+
+main {
+  .inner {
+    border: 1px solid blue;
+    form {
+      
+      .search {
+        margin: auto;//중앙으로 정렬
+        width: 586px;
+        height: 56px;
+        position: relative;
+        border: transparent;
+        & input {
+          width: 100%;
+          height: 100%;
+          padding: 10px 14px;
+          border-bottom: 2px solid $color--gray;
+          box-sizing: border-box;
+          outline: none;
+          &:focus {
+            border-bottom: 2px solid $color--black;
+          }
+        }
+        .search-icon {
+          width: 52px;
+          height: 52px;
+          background-color: transparent;
+          border: transparent;
+          box-sizing: border-box;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: $color--black;
+          font-size: 30px;
+          position: absolute;
+          top: 2px;
+          right: 2px;
+          cursor: pointer;
+        }
+      }
+    }
+   
+  }
+
+}
