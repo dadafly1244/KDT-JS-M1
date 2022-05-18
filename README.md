@@ -54,6 +54,11 @@ console.log(fetchedData.data)
 
 
 
+### 무한스크롤 
+명진님이 영상을 추천해 주셔서 참고해서 만들었습니다 
+>https://youtu.be/hVcriryAVbg?t=1157
+
+
 ## 요구사항
 
 ### 필수 요구사항
@@ -67,7 +72,7 @@ console.log(fetchedData.data)
 
 - [x] Webpack 프로젝트로 구성해보세요.
 - [ ] 클라이언트에서 API Key가 노출되지 않도록 만들어보세요.
-- [ ] 무한 스크롤을 위한 'Intersection Observer'를 활용해보세요.
+- [x] 무한 스크롤을 위한 'Intersection Observer'를 활용해보세요.
 - [x] 최초 API 요청(Request)에 대한 로딩 애니메이션을 추가해보세요.
 - [ ] SCSS, Bootstrap 등을 구성해 프로젝트를 최대한 예쁘게(?) 만들어보세요.
 - [ ] 영화 포스터 주소에 포함된 `SX300`를 `SX700`과 같이 더 큰 숫자로 수정해 요청하세요.

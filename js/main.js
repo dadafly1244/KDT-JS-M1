@@ -14,7 +14,38 @@ console.log(fetchLoadindEl)
 //전역 변수 
 let currentPage = 1
 let restNumOfMovies = 0
+let totalNumofMovie = 0
 
+
+const io = new IntersectionObserver( async ([{isIntersecting}]) => {
+  //무한스크롤
+  console.log('isintersection',isIntersecting)
+  if(isIntersecting) {
+    try{
+      if(searchTextEl.value !== ''){
+        const fetchedData = await fetchDataByTitle(searchTextEl.value,currentPage)
+        console.log('intersec',fetchedData)
+        const {Search: movies, totalResults :totalNumMovie, Response} = fetchedData.data
+        renderMovies(movies,movieListEl)
+        currentPage += 1
+      } else {
+        console.log(`아직 검색된 영화 없음`)
+      }     
+    } catch (error){
+      console.log('더이상 영화없음')
+      //io.unobserve(fetchLoadindEl)
+      const noMoreMoviesEl = document.createElement('h3')
+      noMoreMoviesEl.textContent = '더 이상 검색된 영화가 없습니다. '
+      movieListEl.append(noMoreMoviesEl)
+      fetchLoadindEl.style.display = 'none'
+    }
+
+  }
+})
+
+
+
+// io.observe(fetchLoadindEl)
 
 
 
@@ -32,25 +63,18 @@ formEl.addEventListener('click', (e) => {  //form태그 안에서 사용자가 �
     renderFirstpage()
   }
 })
-moreBtnEl.addEventListener('click',async () => { //more버튼을 누르는 이벤트 감지
-  //console.log('searchTextEl.value,currentPage',searchTextEl.value,currentPage)
-  const fetchedData = await fetchDataByTitle(searchTextEl.value,currentPage)
-  const {Search: movies} = fetchedData.data
-  renderMovies(movies,movieListEl)
-  currentPage += 1
-})
-
-
-// function calcRestMovie(restMovieNum, pageNum ) {
-//   restMovieNum = restMovieNum - (10*pageNum)
-//   return restMovieNum
-// }
-
-// //인터
-// const io = new IntersectionObserver((entry, observer) => {
-//   const ioTarget = entry[0].target
-
+// moreBtnEl.addEventListener('click',async () => { //more버튼을 누르는 이벤트 감지
+//   //console.log('searchTextEl.value,currentPage',searchTextEl.value,currentPage)
+//   const fetchedData = await fetchDataByTitle(searchTextEl.value,currentPage)
+//   const {Search: movies} = fetchedData.data
+//   renderMovies(movies,movieListEl)
+//   currentPage += 1
 // })
+
+
+
+
+
 
 
 
@@ -70,9 +94,11 @@ async function renderFirstpage() {
     console.log(fetchedData.data)
      // page가 1일때만 총 영화 개수 출력하기
     currentPage === 1 && renderTotalMoviesNum(totalNumMovie)
-    //restNumOfMovies = totalNumMovie
+    restNumOfMovies = totalNumMovie
     currentPage = 2
     renderMovies(movies,movieListEl)
+    fetchLoadindEl.style.display = 'block'
+    io.observe(fetchLoadindEl)
   } else {
     errorMsgForNoMovie(movieListEl, fetchedData.data.Error )
   }
