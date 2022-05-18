@@ -11,10 +11,12 @@ const searchTextEl  = formEl.querySelector('#search--text')
 const fetchLoadindEl = document.querySelector('.movie--loding-container')
 console.log(fetchLoadindEl)
 
+const noMoreMovieErrorEl = document.querySelector('no-more-movie')
+
 //전역 변수 
 let currentPage = 1
-let restNumOfMovies = 0
-let totalNumofMovie = 0
+//let restNumOfMovies = 0
+//let totalNumofMovie = 0
 
 
 const io = new IntersectionObserver( async ([{isIntersecting}]) => {
@@ -25,28 +27,25 @@ const io = new IntersectionObserver( async ([{isIntersecting}]) => {
       if(searchTextEl.value !== ''){
         const fetchedData = await fetchDataByTitle(searchTextEl.value,currentPage)
         console.log('intersec',fetchedData)
-        const {Search: movies, totalResults :totalNumMovie, Response} = fetchedData.data
-        renderMovies(movies,movieListEl)
-        currentPage += 1
+        const {Search: movies, totalResults :totalNumMovie} = fetchedData.data
+        if (totalNumMovie === '1'){
+          renderMovies(movies,movieListEl)
+          io.unobserve(fetchLoadindEl)
+          noMoreMovies()
+        }else{
+          renderMovies(movies,movieListEl)
+          currentPage += 1
+        }
+       
       } else {
         console.log(`아직 검색된 영화 없음`)
       }     
     } catch (error){
-      console.log('더이상 영화없음')
-      //io.unobserve(fetchLoadindEl)
-      const noMoreMoviesEl = document.createElement('h3')
-      noMoreMoviesEl.textContent = '더 이상 검색된 영화가 없습니다. '
-      movieListEl.append(noMoreMoviesEl)
-      fetchLoadindEl.style.display = 'none'
+      noMoreMovies()
     }
 
   }
 })
-
-
-
-// io.observe(fetchLoadindEl)
-
 
 
 // event listener
@@ -72,14 +71,15 @@ formEl.addEventListener('click', (e) => {  //form태그 안에서 사용자가 �
 // })
 
 
-
-
-
-
-
-
-
-
+function noMoreMovies() {
+  //더이상 불러올 영화가 없을때 출력하는 함수 
+  console.log('더이상 영화없음')
+  io.unobserve(fetchLoadindEl)
+  const noMoreMoviesEl = document.createElement('h3')
+  noMoreMoviesEl.textContent = '더 이상 검색된 영화가 없습니다. '
+  movieListEl.append(noMoreMoviesEl)
+  fetchLoadindEl.style.display = 'none'
+}
 
 // ##이벤트가 발생했을 때 화면에 출력하는 함수들
 
@@ -87,6 +87,10 @@ async function renderFirstpage() {
   //검색하면 제일 첫 페이지를 출력하는 함수 
   currentPage = 1
   movieListEl.innerHTML =''
+  if(searchTextEl.value === ''){ //아무것도 입력되지 않으면
+    errorMsgForNoMovie(movieListEl,'검색어를 입력해 주세요.')
+    return
+  }
   const fetchedData = await fetchDataByTitle(searchTextEl.value,currentPage)
   const {Response} = fetchedData.data
   if (Response === 'True') {
@@ -94,15 +98,15 @@ async function renderFirstpage() {
     console.log(fetchedData.data)
      // page가 1일때만 총 영화 개수 출력하기
     currentPage === 1 && renderTotalMoviesNum(totalNumMovie)
-    restNumOfMovies = totalNumMovie
-    currentPage = 2
-    renderMovies(movies,movieListEl)
+    //currentPage = 2
+    //renderMovies(movies,movieListEl)
     fetchLoadindEl.style.display = 'block'
     io.observe(fetchLoadindEl)
   } else {
-    errorMsgForNoMovie(movieListEl, fetchedData.data.Error )
+    errorMsgForNoMovie(movieListEl, fetchedData.data.Error)
   }
 }
+
 
 
 function renderTotalMoviesNum(totalMoviesNum) { 
@@ -125,7 +129,6 @@ function errorMsgForNoMovie(parentEl, apiErrorMsg) {
   noMovieContainerEl.append(noMovieTitleEl)
   noMovieContainerEl.append(noMovieImgEl)
   parentEl.append(noMovieContainerEl)
-
 }
 
 function renderMovies(movies, containerEl) { 
@@ -148,14 +151,12 @@ function renderMovies(movies, containerEl) {
       .catch((e) => {
         console.log(e);
       });
-
   })
 }
 
-
 function imageLoad(titleEl,imgSrc, containerEl, lodingEl) { 
   //이미지 요소 만들고 로드되면 로딩중 요소를 삭제하고 제목과 포스터를 부모 요소에 삽입하는 함수
-  return new Promise((resolve, reject) => {
+  return  new Promise((resolve, reject) => {
     if (!imgSrc) {
       reject("이미지 로딩 실패");
       return; // 없으면 밑에는 실행되서 에러가 뜸 reslove만 안 돌아감
@@ -170,5 +171,3 @@ function imageLoad(titleEl,imgSrc, containerEl, lodingEl) {
     });
   });
 }
-
-
