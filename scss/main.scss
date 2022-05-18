@@ -1,6 +1,8 @@
 $color--white: #fff;
 $color--black: #222;
 $color--gray :#919191;
+$color--darkgray : #333;
+$color--yellow: #ffff60;
 
 //cors 에러남
 // https://evan-moon.github.io/2020/05/21/about-cors/
@@ -16,6 +18,52 @@ $color--gray :#919191;
 //     url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
 //     url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
 // }
+
+// 최초 API 요청(Request)에 대한 로딩 애니메이션을 위한 변수들!!! 시작
+$red_car: red;
+$yellogreen_car : yellowgreen;
+$car_shadow : -2px 2px 3px 2px $color--darkgray ;
+
+@mixin animation ($delay, $duration, $animation, $count) {
+    animation-delay: $delay;
+    animation-duration: $duration;
+    animation-name: $animation;
+    animation-iteration-count: $count;
+    animation-timing-function: cubic-bezier(.43,.03,.75,.47);
+    animation-fill-mode: forwards;
+}
+
+@mixin keyframe ($animation_name) {
+    @keyframes #{$animation_name} {
+        @content;
+    }
+}
+
+@include keyframe(accel) {
+    100% {
+        transform: translateX(600px)
+    }0%{
+        transform: translateX(-60px)
+    }
+}
+
+@include keyframe(accel2) {
+    100% {
+        transform: translateX(-600px)
+    }0%{
+        transform: translateX(60px)
+    }
+}
+
+%car_base {
+    width: 50px; 
+    height: 30px;
+    position: absolute;
+    box-shadow: $car_shadow;
+}
+// 최초 API 요청(Request)에 대한 로딩 애니메이션을 위한 변수들!!!끝
+
+
 
 .material-icons {
   font-family: 'Material Icons';
@@ -166,6 +214,72 @@ main {
           cursor: pointer;
         }
       }
+    }
+
+    .movie {
+      .movie--total-movie-num {
+
+      }
+      .movie--list {
+        
+      }
+      .movie--loding-container{
+        display: none;
+        h2 {
+          font-size: 40px;
+          font-weight: 700;
+          color: $color--darkgray;
+          margin: 0px auto; 
+          width: 500px; 
+          text-align: center
+        }
+        .load {
+          width: 500px;
+          height: 100px;
+          position: relative;;
+          background: #555;
+          margin: 20px auto;
+          overflow: hidden;
+          &:after{
+            content:'';
+            border-top:4px solid #fff;
+            width:500px;
+            position:absolute;
+            margin-top:-2px;
+            top:50%;
+          }
+          .car {
+            @extend %car_base;
+            background: $red_car;
+            left:-80px;
+            top:10px;
+            @include animation(0s, 6s,accel,infinite);
+            .light {
+              width:80px;
+              height:30px;
+              position: absolute;
+              right:-80px;
+              background: linear-gradient(to right, #ffff60, rgba(255,255,96,0))
+            }
+          }
+          .car2 {
+            @extend %car_base;
+            background: $yellogreen_car;
+            right:-80px;
+            bottom:10px;
+            @include animation(0s, 6s,accel2,infinite);
+            .light {
+                width:80px;
+                height:30px;
+                position: absolute;
+                left:-80px;
+                background: linear-gradient(to left, $color--yellow, rgba(255,255,96,0))
+              }
+          }
+        }
+        
+      }
+      
     }
    
   }
