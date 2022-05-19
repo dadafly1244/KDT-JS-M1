@@ -11,7 +11,6 @@ const formEl = searchEl.querySelector('form')
 const searchTextEl  = formEl.querySelector('#search--text')
 const fetchLoadindEl = document.querySelector('.movie--loding-container')
 
-
 //전역 변수 
 let currentPage = 1
 
@@ -101,8 +100,6 @@ async function renderFirstpage() {
     errorMsgForNoMovie(movieListEl, fetchedData.data.Error)
   }
 }
-
-
 
 function renderTotalMoviesNum(totalMoviesNum) { 
   //영화 총 갯수를 출력하는 함수
