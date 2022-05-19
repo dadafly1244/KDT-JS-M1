@@ -47,7 +47,9 @@ module.exports = {
         {from: 'static'},
       ]
     }),
-    new Dotenv()
+    new Dotenv({
+      systemvars: true
+    })
   ],
 
   // devServer: {
