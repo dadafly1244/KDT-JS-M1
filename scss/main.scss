@@ -1,73 +1,69 @@
 $color--white: #fff;
 $color--black: #222;
-$color--gray :#919191;
-$color--darkgray : #333;
+$color--gray: #003835;
+$color--darkgray: #333;
 $color--yellow: #ffff60;
-$color--lightgray : #c1c1c1;
-
-//cors 에러남
-// https://evan-moon.github.io/2020/05/21/about-cors/
-
-// @font-face {
-//   font-family: 'Material Icons';
-//   font-style: normal;
-//   font-weight: 400;
-//   src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
-//   src: local('Material Icons'),
-//     local('MaterialIcons-Regular'),
-//     url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
-//     url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
-//     url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
-// }
+$color--lightgray: #c1c1c1;
 
 // 최초 API 요청(Request)에 대한 로딩 애니메이션을 위한 변수들!!! 시작
 $red_car: red;
-$yellogreen_car : yellowgreen;
-$car_shadow : -2px 2px 3px 2px $color--darkgray ;
+$yellogreen_car: yellowgreen;
+$car_shadow: -2px 2px 3px 2px $color--darkgray;
 
-@mixin animation ($delay, $duration, $animation, $count) {
+@mixin animation($delay, $duration, $animation, $count) {
   animation-delay: $delay;
   animation-duration: $duration;
   animation-name: $animation;
   animation-iteration-count: $count;
-  animation-timing-function: cubic-bezier(.43,.03,.75,.47);
+  animation-timing-function: cubic-bezier(0.43, 0.03, 0.75, 0.47);
   animation-fill-mode: forwards;
 }
-@mixin keyframe ($animation_name) {
+@mixin keyframe($animation_name) {
   @keyframes #{$animation_name} {
     @content;
   }
 }
 @include keyframe(accel) {
   100% {
-    transform: translateX(600px)
-  }0%{
-    transform: translateX(-60px)
+    transform: translateX(600px);
+  }
+  0% {
+    transform: translateX(-60px);
   }
 }
 @include keyframe(accel2) {
   100% {
-    transform: translateX(-600px)
-  }0%{
-    transform: translateX(60px)
+    transform: translateX(-600px);
+  }
+  0% {
+    transform: translateX(60px);
+  }
+}
+
+@keyframes in {
+  0% {
+    opacity: 0;
+    transform: translateY(50px) rotate(90deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
   }
 }
 
 %car_base {
-    width: 50px; 
-    height: 30px;
-    position: absolute;
-    box-shadow: $car_shadow;
+  width: 50px;
+  height: 30px;
+  position: absolute;
+  box-shadow: $car_shadow;
 }
 // 최초 API 요청(Request)에 대한 로딩 애니메이션을 위한 변수들!!!끝
 
-
-
-
 // common
 body {
-  font-family: '-apple-system','Segoe UI', 'Helvetica Neue', Helvetica, Verdana, Arial, sans-serif;
-
+  font-family: "-apple-system", "Segoe UI", "Helvetica Neue", Helvetica, Verdana,
+    Arial, sans-serif;
+  position: relative;
 }
 img {
   display: block;
@@ -88,11 +84,14 @@ header {
   width: 100%;
   height: 60px;
   background-color: $color--lightgray;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
   .inner {
-    display:flex;
+    display: flex;
     align-items: center;
     .logo {
       display: flex;
@@ -107,12 +106,12 @@ header {
         height: 17px;
         font-size: 16px;
         font-weight: 700;
-        color:$color--black;
+        color: $color--black;
       }
     }
     ul {
-      display:flex;
-      li{
+      display: flex;
+      li {
         margin-left: 15px;
         a {
           color: $color--gray;
@@ -120,7 +119,7 @@ header {
         }
       }
     }
-    &--left{
+    &--left {
       position: absolute;
       right: 10px;
       display: flex;
@@ -132,7 +131,7 @@ header {
         border: 1px solid $color--gray;
       }
       .menu-btn {
-        a{
+        a {
           color: $color--gray;
         }
       }
@@ -152,93 +151,80 @@ main {
     display: flex;
     justify-content: center;
     flex-direction: column;
-      .search {
+    .search {
+      display: flex;
+      justify-content: center;
+      form {
+        margin: auto; //중앙으로 정렬
+        // width: 586px;
+        // height: 56px;
+        outline: none;
+        padding: 20px 0;
         display: flex;
-        justify-content: center;
-        form {
-          margin: auto;//중앙으로 정렬
-          // width: 586px;
-          // height: 56px;
+        & input {
+          font-size: 20px;
+          color: $color--gray;
+          background-color: $color--white;
+          width: 586px;
+          height: 56px;
+          padding: 10px 14px;
+          border: transparent;
+          border-bottom: 4px solid $color--gray;
+          box-sizing: border-box;
           outline: none;
-          padding: 20px 0;
-          display: flex;
-          & input {
-            font-size: 20px;
-            color: $color--gray;
-            background-color: $color--white;
-            width: 586px;
-            height: 56px;
-            padding: 10px 14px;
+          &:focus {
             border: transparent;
-            border-bottom: 4px solid $color--gray;
-            box-sizing: border-box;
-            outline: none;
-            &:focus {
-              border: transparent;
-              border-bottom: 4px solid $color--black;
-            }
+            border-bottom: 4px solid $color--black;
           }
-          button {
-            width: 52px;
-            height: 56px;
-            background-color: $color--white;
-            border: transparent;
-            border-bottom: 4px solid $color--gray;
-            box-sizing: border-box;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: $color--black;
-            font-size: 30px;
-            cursor: pointer;
-            &:hover{
-              border-bottom: 4px solid $color--black;
-            }
+        }
+        button {
+          width: 52px;
+          height: 56px;
+          background-color: $color--white;
+          border: transparent;
+          border-bottom: 4px solid $color--gray;
+          box-sizing: border-box;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: $color--black;
+          font-size: 30px;
+          cursor: pointer;
+          &:hover {
+            border-bottom: 4px solid $color--black;
           }
         }
       }
-    
+    }
     .movie {
       height: 70vh;
       .movie--total-movie-num {
         padding: 20px 0;
         text-align: center;
-        h3{
+        h3 {
           color: $color--gray;
           font-size: 20px;
         }
       }
-      .wellcome{
-        height: 50vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: $color--white;
-        margin: 0;
-        padding: 0;
-        .item {
-          text-align: center;
-          color: $color--white;
-          margin: 2.5rem;
+      .welcome {
+        color: #003835;
+        font-family: "Raleway", sans-serif;
+        font-size: 52px;
+        font-weight: 600;
+        text-transform: uppercase;
+        margin-left: auto;
+        margin-right: auto;
+        width: fit-content;
+        div {
           display: inline-block;
-          width: 20px;
-          height: 20px;
-          background-color: $color--black;
-          animation: grow ease-in-out 1.6s infinite;
-          @for $i from 1 through 8 {
-            &:nth-of-type(#{$i}){
-              animation-delay: 0.2s * $i;
-              box-shadow: -2px 1px 30px 3px $color--gray;
+          opacity: 0;
+          transform: translateY(20px) rotate(90deg);
+          transform-origin: left;
+          animation: in 0.5s forwards;
+          @for $i from 1 to 8 {
+            &:nth-child(#{$i}) {
+              animation-delay: $i * 0.1s;
             }
-          }
-        }
-        @keyframes grow {
-          0%,
-          100% {
-              transform: scale(0.2);
-          }
-          20% {
-              transform: scale(2);
           }
         }
       }
@@ -246,132 +232,140 @@ main {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
-       .befor-loading{
-         display: flex;
-         justify-content: center;
-         align-items: center;
-         background-color: $color--lightgray;
-         color: $color--white;
-         font-size: 40px; 
-         height: 350px;
-         width: 270px;
-       }
-       .movie-item{
-        height: 350px;
-        width: 270px;
-        background-color: $color--white;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        .movie-title{
+        .befor-loading {
           display: flex;
           justify-content: center;
           align-items: center;
-          background-color: $color--darkgray;
+          background-color: $color--lightgray;
           color: $color--white;
-          height: 50px;
-          width: 200px;
+          font-size: 40px;
+          height: 350px;
+          width: 270px;
         }
-        img {
-          box-sizing: border-box;
-          border: 2px solid $color--darkgray;
-          width: 200px;
-          height: 240px;
-         }
-         &:hover {
-          transform:  scale(1.2);
-          transition: all 0.2s ease-in-out;
-          box-shadow: -2px 1px 30px 3px $color--black;
-         }
-       }
-       .no-more-movie{
-        width: 100%;
-        height: 100px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        animation: growsmall ease-in-out 1.6s;
-        font-size: 20px;
-        color: $color--darkgray;
-       }
-       @keyframes growsmall {
-        0%{
-          transform: scale(1);
-        }
-        40% {
-          transform: scale(1.1);
-        }
-       100% {
-         transform: scale(1);
-        }
-       }
-       .nomovie-container{
-        display: flex;
-        flex-direction: column;
-        h3{
-          display: block;
-          height: 50px;
-          margin: 30px 0;
+        .movie-item {
+          height: 350px;
+          width: 270px;
+          background-color: $color--white;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
           text-align: center;
-          white-space: pre-wrap;//줄바꿈 개행문자인식...
+          .movie-title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: $color--darkgray;
+            color: $color--white;
+            height: 50px;
+            width: 200px;
+          }
+          img {
+            box-sizing: border-box;
+            border: 2px solid $color--darkgray;
+            width: 200px;
+            height: 240px;
+          }
+          &:hover {
+            transform: scale(1.2);
+            transition: all 0.2s ease-in-out;
+            box-shadow: -2px 1px 30px 3px $color--black;
+          }
+        }
+        .no-more-movie {
+          width: 100%;
+          height: 100px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          animation: growsmall ease-in-out 1.6s;
           font-size: 20px;
-        }  
-       }
+          color: $color--darkgray;
+        }
+        @keyframes growsmall {
+          0% {
+            transform: scale(1);
+          }
+          40% {
+            transform: scale(1.1);
+          }
+          100% {
+            transform: scale(1);
+          }
+        }
+        .nomovie-container {
+          display: flex;
+          flex-direction: column;
+          h3 {
+            display: block;
+            height: 50px;
+            margin: 30px 0;
+            text-align: center;
+            white-space: pre-wrap; //줄바꿈 개행문자인식...
+            font-size: 20px;
+          }
+        }
       }
-      .movie--loding-container{
+      .movie--loding-container {
         display: none;
         h2 {
           font-size: 40px;
           font-weight: 700;
           color: $color--darkgray;
-          margin: 0px auto; 
-          width: 500px; 
-          text-align: center
+          margin: 0px auto;
+          width: 500px;
+          text-align: center;
         }
         .load {
           width: 500px;
           height: 100px;
-          position: relative;;
+          position: relative;
           background: #555;
           margin: 20px auto;
           overflow: hidden;
-          &:after{
-            content:'';
-            border-top:4px solid #fff;
-            width:500px;
-            position:absolute;
-            margin-top:-2px;
-            top:50%;
+          &:after {
+            content: "";
+            border-top: 4px solid #fff;
+            width: 500px;
+            position: absolute;
+            margin-top: -2px;
+            top: 50%;
           }
           .car {
             @extend %car_base;
             background: $red_car;
-            left:-80px;
-            top:10px;
-            @include animation(0s, 6s,accel,infinite);
+            left: -80px;
+            top: 10px;
+            @include animation(0s, 6s, accel, infinite);
             .light {
-              width:80px;
-              height:30px;
+              width: 80px;
+              height: 30px;
               position: absolute;
-              right:-80px;
-              background: linear-gradient(to right, #ffff60, rgba(255,255,96,0))
+              right: -80px;
+              background: linear-gradient(
+                to right,
+                #ffff60,
+                rgba(255, 255, 96, 0)
+              );
             }
           }
           .car2 {
             @extend %car_base;
             background: $yellogreen_car;
-            right:-80px;
-            bottom:10px;
-            @include animation(0s, 6s,accel2,infinite);
+            right: -80px;
+            bottom: 10px;
+            @include animation(0s, 6s, accel2, infinite);
             .light {
-                width:80px;
-                height:30px;
-                position: absolute;
-                left:-80px;
-                background: linear-gradient(to left, $color--yellow, rgba(255,255,96,0))
-              }
+              width: 80px;
+              height: 30px;
+              position: absolute;
+              left: -80px;
+              background: linear-gradient(
+                to left,
+                $color--yellow,
+                rgba(255, 255, 96, 0)
+              );
+            }
           }
         }
       }
@@ -398,12 +392,12 @@ footer {
         align-items: center;
         font-weight: 500;
         margin-left: 20px;
-        a{
+        a {
           color: $color--white;
           cursor: pointer;
         }
-        &:first-child::before{
-          content :"";
+        &:first-child::before {
+          content: "";
           width: 10px;
           height: 10px;
           /* ::after은 인라인요소 */
@@ -414,7 +408,7 @@ footer {
           margin: 0 20px;
         }
         &::after {
-          content :"";
+          content: "";
           width: 10px;
           height: 10px;
           /* ::after은 인라인요소 */

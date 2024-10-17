@@ -1,101 +1,125 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>영화검색</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
- 
-  <!-- material-icons -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-  <link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
-</head>
-<body>
-  <!-- <img src="./images/logo.png" alt="hhh" /> -->
-  <header>
-    <div class="inner">
-      <div class="logo">
-        <img src="./images/logo_daum.png" alt="다음로고">
-        <p>영화</p>
-      </div>
-      <ul>
-        <li>
-          <a href="javascript:void(0)">New</a>
-        </li>
-        <li>
-          <a href="javascript:void(0)">Movie</a>
-        </li>
-        <li>
-          <a href="javascript:void(0)">actor</a>
-        </li>
-        <li>
-          <a href="javascript:void(0)">director</a>
-        </li>
-      </ul>
-      <div class="inner--left">
-        <button>로그인</button>
-        <div class="menu-btn"  >
-          <a class="material-symbols-rounded" href="javascript:void(0)">widgets</a>
-        </div>
-      </div>
-    </div>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>영화검색</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
+    />
 
-  <main>
-    <div class="inner">
-      <div class="search">
-        <form action="javascript:void(0)">
-          <!-- 영어대소문자, 숫자, 공백만 입력하도록 유도하기 -->
-          <!-- https://neomania.tistory.com/3 -->
-          <input type="text" placeholder="Search Movie title(Only alphabets, numbers)" id="search--text" pattern="[A-Za-z0-9\s+]*$"/> 
-          <!-- <button class="material-icons search-icon" type="submit" value="search"> </button> -->
-          <button class="material-symbols-outlined" type="submit" value ="button">search</button>
-        </form>
-      </div>
-      <div class="movie">
-        <div class="movie--total-movie-num"></div>
-        <!-- <div class="movie--empty-space"></div> -->
-        <div class="wellcome">
-          <div class="item">W</div>
-          <div class="item">E</div>
-          <div class="item">L</div>
-          <div class="item">L</div>
-          <div class="item">C</div>
-          <div class="item">O</div>
-          <div class="item">M</div>
-          <div class="item">E</div>
+    <!-- material-icons -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
+  </head>
+  <body>
+    <!-- <img src="./images/logo.png" alt="hhh" /> -->
+    <header>
+      <div class="inner">
+        <div class="logo">
+          <img src="./images/logo_daum.png" alt="다음로고" />
+          <p>영화</p>
         </div>
-        <div class="movie--list"></div>
-        <!-- <button class="movie--more-btn">more</button> -->
-        <div class="movie--loding-container">
-          <h2>Loading....</h2>
-          <div class='load'>
-            <div class='car'>
-              <div class='light'></div>
-            </div>
-            <div class='car2'>
-              <div class='light'></div>
+        <ul>
+          <li>
+            <a href="javascript:void(0)">New</a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">Movie</a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">actor</a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">director</a>
+          </li>
+        </ul>
+        <div class="inner--left">
+          <button>로그인</button>
+          <div class="menu-btn">
+            <a class="material-symbols-rounded" href="javascript:void(0)"
+              >widgets</a
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="inner">
+        <div class="search">
+          <form action="javascript:void(0)">
+            <!-- 영어대소문자, 숫자, 공백만 입력하도록 유도하기 -->
+            <!-- https://neomania.tistory.com/3 -->
+            <input
+              type="text"
+              placeholder="Search Movie title(Only alphabets, numbers)"
+              id="search--text"
+              pattern="[A-Za-z0-9\s+]*$"
+            />
+            <!-- <button class="material-icons search-icon" type="submit" value="search"> </button> -->
+            <button
+              class="material-symbols-outlined"
+              type="submit"
+              value="button"
+            >
+              search
+            </button>
+          </form>
+        </div>
+        <div class="movie">
+          <div class="movie--total-movie-num"></div>
+          <!-- <div class="movie--empty-space"></div> -->
+          <div class="welcome">
+            <div class="item">W</div>
+            <div class="item">E</div>
+            <div class="item">L</div>
+            <div class="item">C</div>
+            <div class="item">O</div>
+            <div class="item">M</div>
+            <div class="item">E</div>
+          </div>
+          <div class="movie--list"></div>
+          <!-- <button class="movie--more-btn">more</button> -->
+          <div class="movie--loding-container">
+            <h2>Loading....</h2>
+            <div class="load">
+              <div class="car">
+                <div class="light"></div>
+              </div>
+              <div class="car2">
+                <div class="light"></div>
+              </div>
             </div>
           </div>
         </div>
-    
       </div>
-    </div>
-  </main>
-  <footer> 
-    <div class="inner">
-      <ul>
-        <li>
-          <a href="https://github.com/KDT1-FE/KDT-JS-M1">과제명: KDT-JS-M1</a>
-        </li>
-        <li>이름 : 양다영</li>
-        <li>
-          <a href="https://github.com/dadafly1244">GitHub</a>
-        </li>
-        <li><a href="https://flyda-it.tistory.com/">Tistory</a></li>
-      </ul>
-    </div>
-  </footer>
-</body>
+    </main>
+    <footer>
+      <div class="inner">
+        <ul>
+          <li>
+            <a href="https://github.com/KDT1-FE/KDT-JS-M1">과제명: KDT-JS-M1</a>
+          </li>
+          <li>이름 : 양다영</li>
+          <li>
+            <a href="https://github.com/dadafly1244">GitHub</a>
+          </li>
+          <li><a href="https://flyda-it.tistory.com/">Tistory</a></li>
+        </ul>
+      </div>
+    </footer>
+  </body>
+</html>
